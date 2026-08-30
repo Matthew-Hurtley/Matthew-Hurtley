@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enter Code</title>
+<style>
+  :root {
+    --ink: #1c1b19;
+    --paper: #faf8f4;
+    --line: #d8d3c8;
+    --accent: #2f5d50;
+    --muted: #6b6459;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    text-align: center;
+    max-width: 320px;
+    padding: 40px 32px;
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  input {
+    font-family: var(--mono);
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #fff;
+    width: 100%;
+    outline: none;
+    margin-bottom: 14px;
+  }
+
+  input:focus { border-color: var(--accent); }
+
+  button {
+    font-family: var(--mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  button:hover { opacity: 0.9; }
+
+  #error {
+    color: #a33;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-top: 12px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Enter Code</h1>
+    <p>Type the code you were given</p>
+    <form id="code-form">
+      <input id="code-input" type="text" inputmode="numeric" placeholder="•••••" autofocus>
+      <button type="submit">Go</button>
+    </form>
+    <div id="error">Code not recognised</div>
+  </div>
+
+  <script>
+    // Map each code to the page it should open.
+    // Add or change entries here as needed.
+    const CODES = {
+      "12345": "cv.html",
+      "4321": "powerwash.html"
+    };
+
+    const form = document.getElementById('code-form');
+    const input = document.getElementById('code-input');
+    const error = document.getElementById('error');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const code = input.value.trim();
+      if (CODES[code]) {
+        window.location.href = CODES[code];
+      } else {
+        error.style.display = 'block';
+        input.value = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
