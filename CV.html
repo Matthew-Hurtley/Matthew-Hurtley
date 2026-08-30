@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matthew Hurtley — CV</title>
+<style>
+  :root {
+    --ink: #1c1b19;
+    --paper: #faf8f4;
+    --line: #d8d3c8;
+    --accent: #2f5d50;
+    --accent-soft: #e4ece9;
+    --muted: #6b6459;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 72px 32px 100px;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .role {
+    font-family: var(--mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-top: 6px;
+  }
+
+  .contact {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .contact a { color: var(--muted); text-decoration: none; border-bottom: 1px dotted var(--muted); }
+  .contact a:hover { color: var(--accent); border-color: var(--accent); }
+
+  section { margin-bottom: 40px; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .section-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  p.summary {
+    font-size: 17px;
+    color: var(--ink);
+    max-width: 66ch;
+  }
+
+  .job {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+
+  .job:last-child { margin-bottom: 0; }
+
+  .job-date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+
+  .job-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .job-company {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .job ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .job li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 6px;
+    font-size: 15.5px;
+    color: #3a382f;
+  }
+
+  .job li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+  }
+
+  .skill-group h3 {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 13px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+
+  .edu-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+
+  .edu-item:last-child { margin-bottom: 0; }
+
+  .edu-date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+
+  .edu-title { font-weight: 600; font-size: 16px; }
+  .edu-school { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+  .edu-detail { font-size: 15px; color: #3a382f; margin-top: 4px; }
+
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  .ref-name { font-weight: 600; font-size: 15.5px; }
+  .ref-role { font-family: var(--mono); font-size: 12px; color: var(--muted); margin: 3px 0 6px; }
+  .ref-email { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+
+  .edit-note {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--line);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  @media print {
+    .edit-note, #lock-screen { display: none; }
+    body { background: white; }
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 40px 20px 60px; }
+    header { flex-direction: column; align-items: flex-start; }
+    .contact { text-align: left; }
+    .job, .edu-item { grid-template-columns: 1fr; gap: 6px; }
+    h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+  <div id="lock-screen" style="
+    position: fixed; inset: 0; background: #faf8f4; z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  ">
+    <form id="lock-form" style="text-align: center;">
+      <div style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #6b6459; margin-bottom: 14px;">
+        This page is private
+      </div>
+      <input id="lock-input" type="password" placeholder="Enter password" autofocus style="
+        font-family: inherit; font-size: 15px; padding: 10px 14px;
+        border: 1px solid #d8d3c8; border-radius: 3px; background: #fff;
+        width: 240px; outline: none;
+      ">
+      <div id="lock-error" style="color: #a33; font-size: 12px; margin-top: 10px; display: none;">
+        Incorrect password
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const CV_PASSWORD = "hello";
+
+    const form = document.getElementById('lock-form');
+    const input = document.getElementById('lock-input');
+    const error = document.getElementById('lock-error');
+    const lockScreen = document.getElementById('lock-screen');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (input.value === CV_PASSWORD) {
+        lockScreen.style.display = 'none';
+        sessionStorage.setItem('cv-unlocked', 'true');
+      } else {
+        error.style.display = 'block';
+        input.value = '';
+      }
+    });
+
+    if (sessionStorage.getItem('cv-unlocked') === 'true') {
+      lockScreen.style.display = 'none';
+    }
+  </script>
+
+  <div class="page">
+
+    <header>
+      <div>
+        <h1>Matthew Hurtley</h1>
+        <div class="role">Available for Summer Work</div>
+      </div>
+      <div class="contact">
+        matthewhurtley@proton.me<br>
+        07587 081440<br>
+        Penwortham, Preston, PR1 0HX
+      </div>
+    </header>
+
+    <section>
+      <div class="section-label">Summary</div>
+      <p class="summary">
+        Highly motivated student taking a year out of university, determined to secure a summer position.
+        I enjoy working in fast-paced, hands-on environments and being part of a close-knit team, and I
+        thrive on delivering great service, staying organised under pressure, and bringing enthusiasm and
+        a willingness to learn to every shift.
+      </p>
+    </section>
+
+    <section>
+      <div class="section-label">Employment</div>
+
+      <div class="job">
+        <div class="job-date">Jun 2025 — Jul 2025</div>
+        <div>
+          <div class="job-title">Bar Staff</div>
+          <div class="job-company">BAC Cricket Club, South Meadow Lane, Broadgate</div>
+          <ul>
+            <li>Worked a summer role in a busy, customer-facing bar environment</li>
+            <li>Responsible for serving customers, handling transactions and maintaining a welcoming atmosphere</li>
+            <li>Built strong communication and teamwork skills, staying calm under pressure during busy periods</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-date">Sep 2022 — Jul 2024</div>
+        <div>
+          <div class="job-title">Paintball Marshal</div>
+          <div class="job-company">Paintball Trax &amp; Laser Tag Activity Centre, Leyland</div>
+          <ul>
+            <li>Fulfilled a weekly role alongside A-Level studies</li>
+            <li>Responsible, as part of a team, for the smooth running of each session</li>
+            <li>Ensured safety and resolved conflict during sessions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-date">Jun 2022 — Aug 2022</div>
+        <div>
+          <div class="job-title">Landscaping Assistant</div>
+          <div class="job-company">Hodgson's Garden Maintenance</div>
+          <ul>
+            <li>Worked full time during summer as a landscaping assistant in the local area</li>
+            <li>Worked closely with customers, understanding their needs</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Skills &amp; Achievements</div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Awards</h3>
+          <div class="tag-row">
+            <span class="tag">Gold DofE Award</span>
+            <span class="tag">Bronze DofE Award</span>
+            <span class="tag">Explorer Belt Award</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Leadership</h3>
+          <div class="tag-row">
+            <span class="tag">School Leadership Role</span>
+            <span class="tag">Fundraising Events</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Personal</h3>
+          <div class="tag-row">
+            <span class="tag">Communication</span>
+            <span class="tag">Public Speaking</span>
+            <span class="tag">Results Driven</span>
+            <span class="tag">Embraces Challenges</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Education</div>
+
+      <div class="edu-item">
+        <div class="edu-date">Sep 2022 — Jun 2024</div>
+        <div>
+          <div class="edu-title">A-Levels</div>
+          <div class="edu-school">Lancaster University School of Maths, Preston</div>
+          <div class="edu-detail">Maths (A), Further Maths (B), Physics (B)</div>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-date">Sep 2017 — Jun 2022</div>
+        <div>
+          <div class="edu-title">GCSEs</div>
+          <div class="edu-school">Penwortham Priory Academy</div>
+          <div class="edu-detail">9 GCSEs grades 4 and above, including English and Maths</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">References</div>
+      <div class="ref-grid">
+        <div>
+          <div class="ref-name">Mike Collinge</div>
+          <div class="ref-role">Marshalling Line Manager, Paintball Trax</div>
+          <div class="ref-email">pbbookings@outlook.com</div>
+        </div>
+        <div>
+          <div class="ref-name">Ian Hodgson</div>
+          <div class="ref-role">Landscaping Line Manager, Hodgson's Garden Maintenance</div>
+          <div class="ref-email">info@hodgsontoolhire.co.uk</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="edit-note">
+      Password-protected page &middot; edit index.html to update details
+    </div>
+
+  </div>
+</body>
+</html>
